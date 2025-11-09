@@ -2,7 +2,9 @@ import { EnergyMetrics } from "@/components/EnergyMetrics";
 import { EnergyZoneMap } from "@/components/EnergyZoneMap";
 import { StorageOptimization } from "@/components/StorageOptimization";
 import { AIChat } from "@/components/AIChat";
-import { Zap, Brain, TrendingUp } from "lucide-react";
+import { Zap, Brain, TrendingUp, BookOpen } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
   return (
@@ -10,7 +12,8 @@ const Index = () => {
       {/* Hero Header */}
       <header className="bg-gradient-to-r from-primary to-accent text-white">
         <div className="container mx-auto px-4 py-8">
-          <div className="flex items-center gap-3 mb-3">
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center gap-3">
             <div className="p-3 bg-white/10 rounded-xl backdrop-blur-sm">
               <Zap className="w-8 h-8" />
             </div>
@@ -22,6 +25,13 @@ const Index = () => {
                 AI-Powered Decision Framework for Real-Time Energy Allocation & Grid Management
               </p>
             </div>
+            </div>
+            <Link to="/decision-model">
+              <Button variant="secondary" className="bg-white/10 hover:bg-white/20 text-white border-white/20">
+                <BookOpen className="w-4 h-4 mr-2" />
+                View Decision Model
+              </Button>
+            </Link>
           </div>
           <div className="flex flex-wrap gap-4 mt-6">
             <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-lg backdrop-blur-sm">
