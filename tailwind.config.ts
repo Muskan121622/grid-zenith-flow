@@ -47,6 +47,12 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        energy: {
+          solar: "hsl(var(--energy-solar))",
+          wind: "hsl(var(--energy-wind))",
+          storage: "hsl(var(--energy-storage))",
+          demand: "hsl(var(--energy-demand))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

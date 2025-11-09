@@ -1,0 +1,4 @@
+project_id = "lyhwwtazflzlwrvabsrp"
+
+[functions.energy-chat]
+verify_jwt = false
