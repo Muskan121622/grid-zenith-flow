@@ -5,6 +5,7 @@ import { OptimizationModel } from "@/components/model/OptimizationModel";
 import { DynamicBiddingStrategy } from "@/components/model/DynamicBiddingStrategy";
 import { SimulationResults } from "@/components/model/SimulationResults";
 import { ScalabilityAnalysis } from "@/components/model/ScalabilityAnalysis";
+import OptimizationResults from "@/components/model/OptimizationResults";
 import { ArrowLeft, Brain } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -45,6 +46,7 @@ const DecisionModel = () => {
         <AssumptionsInputs />
         <MLForecastingModels />
         <OptimizationModel />
+        <OptimizationResults />
         <DynamicBiddingStrategy />
         <SimulationResults />
         <ScalabilityAnalysis />

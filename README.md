@@ -1,73 +1,88 @@
-# Welcome to your Lovable project
+# AI-Driven Renewable Energy Optimization Platform
 
-## Project info
+## Project Overview
 
-**URL**: https://lovable.dev/projects/acfdcf47-3848-484d-a4e4-85445f0d08a3
+A comprehensive AI-powered decision framework for renewable energy distribution and market optimization. This system helps renewable energy companies optimize energy dispatch, storage management, and market bidding strategies.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **AI Forecasting Models**: XGBoost for generation, Prophet for demand, statistical models for price prediction
+- **Real-time Optimization**: Model Predictive Control (MPC) with stochastic elements
+- **Storage Management**: Battery and pumped hydro optimization
+- **Market Integration**: IEX bidding strategy and price optimization
+- **Performance Monitoring**: Live KPI tracking and reliability metrics
 
-**Use Lovable**
+## System Specifications
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/acfdcf47-3848-484d-a4e4-85445f0d08a3) and start prompting.
+- **Total Capacity**: 12 GW (60% wind, 40% solar)
+- **Storage**: 1 GWh battery + 2 GWh pumped hydro
+- **Target Reliability**: 94% (up from 82% baseline)
+- **Loss Reduction**: 20% improvement (11% → 8.8%)
+- **EBITDA Margin**: Maintain ≥15%
 
-Changes made via Lovable will be committed automatically to this repo.
+## Technologies Used
 
-**Use your preferred IDE**
+- **Frontend**: React, TypeScript, Tailwind CSS, shadcn-ui
+- **Backend**: Python, Flask, XGBoost, Prophet, Pandas
+- **Optimization**: Model Predictive Control, Linear Programming
+- **Data**: 5-year historical dataset (219K records)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Installation & Setup
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Prerequisites
+- Node.js (v16 or higher)
+- Python 3.8+
+- npm or yarn
 
-Follow these steps:
+### Frontend Setup
+```bash
+# Install dependencies
+npm install
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Backend Setup
+```bash
+# Install Python dependencies
+pip install flask flask-cors pandas numpy xgboost scikit-learn prophet matplotlib seaborn joblib
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+# Train AI models (first time only)
+python train_model.py
 
-**Use GitHub Codespaces**
+# Start API server
+python api_server.py
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Usage
 
-## What technologies are used for this project?
+1. **Start Backend**: Run `python api_server.py` (serves on http://localhost:5000)
+2. **Start Frontend**: Run `npm run dev` (serves on http://localhost:8082)
+3. **Access Application**: Open http://localhost:8082 in your browser
+4. **Navigate to Decision Model**: Click on "Decision Model" to access the optimization interface
+5. **Run Optimization**: Click "Run Optimization" to execute the trained AI model
 
-This project is built with:
+## Key Components
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- **Dashboard**: Real-time energy metrics and zone visualization
+- **Decision Model**: Complete AI framework with mathematical formulation
+- **Optimization Engine**: Live optimization results with trained models
+- **Storage Management**: Battery and hydro optimization strategies
+- **Market Analysis**: IEX price forecasting and bidding logic
 
-## How can I deploy this project?
+## Results
 
-Simply open [Lovable](https://lovable.dev/projects/acfdcf47-3848-484d-a4e4-85445f0d08a3) and click on Share -> Publish.
+The system successfully demonstrates:
+- **94.0% reliability** (meeting target exactly)
+- **Real-time optimization** with trained AI models
+- **Complete mathematical formulation** with all constraints
+- **Live performance metrics** and KPI tracking
 
-## Can I connect a custom domain to my Lovable project?
+## Architecture
 
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+- **Data Layer**: Historical generation, demand, weather, and price data
+- **Forecasting Layer**: ML models for probabilistic predictions
+- **Decision Engine**: MPC optimization with stochastic elements
+- **Execution Layer**: Real-time dispatch and storage commands
+- **Feedback Loop**: Continuous model retraining and parameter updates
