@@ -7,7 +7,7 @@ import pandas as pd
 import os
 
 app = Flask(__name__)
-CORS(app, origins=['http://localhost:8082', 'http://localhost:3000', 'http://localhost:5173', 'https://grid-zenith-flow.vercel.app'])
+CORS(app, origins=['http://localhost:8082', 'http://localhost:3000', 'http://localhost:5173', 'https://grid-zenith-flow.vercel.app'], methods=['GET', 'POST', 'OPTIONS'], allow_headers=['Content-Type'])
 
 optimizer = RenewableEnergyOptimizer()
 
