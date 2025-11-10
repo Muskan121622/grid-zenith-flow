@@ -5,33 +5,37 @@ import { AIChat } from "@/components/AIChat";
 import { Zap, Brain, TrendingUp, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-900/20 dark:to-slate-900">
       {/* Hero Header */}
-      <header className="bg-gradient-to-r from-primary to-accent text-white">
+      <header className="bg-gradient-to-r from-primary to-accent dark:from-purple-900/50 dark:to-blue-900/50 text-white dark:backdrop-blur-xl dark:border-b dark:border-purple-500/20">
         <div className="container mx-auto px-4 py-8">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-3">
-            <div className="p-3 bg-white/10 rounded-xl backdrop-blur-sm">
+            <div className="p-3 bg-white/10 dark:bg-white/5 rounded-xl backdrop-blur-sm dark:backdrop-blur-xl">
               <Zap className="w-8 h-8" />
             </div>
             <div>
               <h1 className="text-3xl md:text-4xl font-bold">
                 Renewable Energy Optimization Platform
               </h1>
-              <p className="text-white/90 text-sm md:text-base mt-1">
+              <p className="text-white/90 dark:text-white/80 text-sm md:text-base mt-1">
                 AI-Powered Decision Framework for Real-Time Energy Allocation & Grid Management
               </p>
             </div>
             </div>
-            <Link to="/decision-model">
-              <Button variant="secondary" className="bg-white/10 hover:bg-white/20 text-white border-white/20">
-                <BookOpen className="w-4 h-4 mr-2" />
-                View Decision Model
-              </Button>
-            </Link>
+            <div className="flex items-center gap-4">
+              <ThemeToggle />
+              <Link to="/decision-model">
+                <Button variant="secondary" className="bg-white/10 hover:bg-white/20 dark:bg-white/5 dark:hover:bg-white/10 text-white border-white/20 dark:border-white/10">
+                  <BookOpen className="w-4 h-4 mr-2" />
+                  View Decision Model
+                </Button>
+              </Link>
+            </div>
           </div>
           <div className="flex flex-wrap gap-4 mt-6">
             <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-lg backdrop-blur-sm">
@@ -51,7 +55,7 @@ const Index = () => {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8 space-y-8">
+      <main className="container mx-auto px-4 py-8 space-y-8 dark:text-white">
         {/* Key Metrics */}
         <section>
           <h2 className="text-2xl font-bold text-foreground mb-4">Key Performance Indicators</h2>
