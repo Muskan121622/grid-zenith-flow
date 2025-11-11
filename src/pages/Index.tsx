@@ -30,10 +30,13 @@ const Index = () => {
             <div className="flex items-center gap-4">
               <ThemeToggle />
               <Link to="/decision-model">
-                <Button variant="secondary" className="bg-white/10 hover:bg-white/20 dark:bg-white/5 dark:hover:bg-white/10 text-white border-white/20 dark:border-white/10">
-                  <BookOpen className="w-4 h-4 mr-2" />
-                  View Decision Model
-                </Button>
+                <div className="relative group">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 rounded-lg blur opacity-0 group-hover:opacity-75 transition duration-1000 group-hover:duration-200 animate-tilt"></div>
+                  <Button className="relative bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 dark:from-purple-500 dark:to-violet-600 dark:hover:from-purple-600 dark:hover:to-violet-700 text-white border-0 shadow-lg transition-all duration-300 animate-bloom">
+                    <BookOpen className="w-4 h-4 mr-2" />
+                    View Decision Model
+                  </Button>
+                </div>
               </Link>
             </div>
           </div>
