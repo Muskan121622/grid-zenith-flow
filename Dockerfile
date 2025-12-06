@@ -22,7 +22,7 @@ RUN mkdir -p models
 RUN python train_model.py
 
 # Expose port
-EXPOSE 5000
+EXPOSE 5001
 
 # Run application
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "4", "api_server:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5001", "--workers", "4", "api_server:app"]

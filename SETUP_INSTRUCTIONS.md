@@ -26,7 +26,7 @@ python train_model.py
 ```bash
 python api_server.py
 ```
-*Backend will run on http://localhost:5000*
+*Backend will run on http://localhost:5001*
 
 ### Step 4: Start Frontend Development Server
 
@@ -59,7 +59,7 @@ pip install -r requirements.txt  # If available
 ```
 
 **If API connection fails:**
-- Ensure backend is running on port 5000
+- Ensure backend is running on port 5001
 - Check that both servers are running simultaneously
 - Verify no firewall blocking localhost connections
 

@@ -26,7 +26,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY . .
-EXPOSE 5000
+EXPOSE 5001
 CMD ["python", "api_server.py"]
 
 # Dockerfile.frontend  
@@ -49,7 +49,7 @@ services:
       context: .
       dockerfile: Dockerfile.backend
     ports:
-      - "5000:5000"
+      - "5001:5001"
     volumes:
       - ./models:/app/models
       - ./data:/app/data
@@ -73,7 +73,7 @@ pip install gunicorn
 
 # 2. Create production config
 # gunicorn_config.py
-bind = "0.0.0.0:5000"
+bind = "0.0.0.0:5001"
 workers = 4
 worker_class = "sync"
 timeout = 300
@@ -139,7 +139,7 @@ server {
 
     # Backend API
     location /api/ {
-        proxy_pass http://localhost:5000;
+        proxy_pass http://localhost:5001;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
@@ -185,7 +185,7 @@ sudo systemctl start nginx
 FLASK_ENV=production
 FLASK_DEBUG=False
 API_HOST=0.0.0.0
-API_PORT=5000
+API_PORT=5001
 MODEL_PATH=/app/models/
 DATA_PATH=/app/data/
 ```
@@ -353,7 +353,7 @@ serve -s dist -l 8082 &
 
 echo "Deployment complete!"
 echo "Frontend: http://localhost:8082"
-echo "Backend: http://localhost:5000"
+echo "Backend: http://localhost:5001"
 ```
 
 ## Troubleshooting

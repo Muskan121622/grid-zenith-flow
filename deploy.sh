@@ -34,7 +34,7 @@ if docker-compose ps | grep -q "Up"; then
     echo ""
     echo "🌐 Application URLs:"
     echo "   Frontend: http://localhost:8082"
-    echo "   Backend API: http://localhost:5000"
+    echo "   Backend API: http://localhost:5001"
     echo "   Full Stack: http://localhost:80"
     echo ""
     echo "📊 To view logs:"

@@ -58,7 +58,7 @@ python api_server.py
 
 ## Usage
 
-1. **Start Backend**: Run `python api_server.py` (serves on http://localhost:5000)
+1. **Start Backend**: Run `python api_server.py` (serves on http://localhost:5001)
 2. **Start Frontend**: Run `npm run dev` (serves on http://localhost:8082)
 3. **Access Application**: Open http://localhost:8082 in your browser
 4. **Navigate to Decision Model**: Click on "Decision Model" to access the optimization interface
