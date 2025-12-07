@@ -25,7 +25,7 @@ class AIOptimizationFramework:
         # Create features for optimization learning
         df['hour'] = df['timestamp'].dt.hour
         df['price_ma'] = df.groupby('region')['price'].rolling(window=24).mean().reset_index(0, drop=True)
-        df['demand_ratio'] = df['demand'] / df['generation']
+        df['demand_ratio'] = df['demand'] / df['total_generation']
         df['price_volatility'] = df.groupby('region')['price'].rolling(window=6).std().reset_index(0, drop=True)
         
         # Learn optimal storage dispatch strategy
@@ -48,18 +48,18 @@ class AIOptimizationFramework:
         
         # Features for storage decision
         features = ['hour', 'price', 'price_ma', 'demand_ratio', 'price_volatility', 
-                   'generation', 'demand', 'storage_soc']
+                   'total_generation', 'demand', 'storage_soc']
         
         # Create optimal storage actions (based on historical performance)
         storage_data['optimal_charge'] = np.where(
             (storage_data['price'] < storage_data['price_ma']) & 
-            (storage_data['generation'] > storage_data['demand']) &
+            (storage_data['total_generation'] > storage_data['demand']) &
             (storage_data['storage_soc'] < 80), 1, 0
         )
         
         storage_data['optimal_discharge'] = np.where(
             (storage_data['price'] > storage_data['price_ma'] * 1.2) & 
-            (storage_data['demand'] > storage_data['generation']) &
+            (storage_data['demand'] > storage_data['total_generation']) &
             (storage_data['storage_soc'] > 20), 1, 0
         )
         
@@ -84,11 +84,11 @@ class AIOptimizationFramework:
         bidding_data = df.dropna().copy()
         
         # Features for bidding decision
-        features = ['hour', 'price', 'generation', 'demand', 'price_volatility']
+        features = ['hour', 'price', 'total_generation', 'demand', 'price_volatility']
         
         # Create optimal bid prices (based on market dynamics)
         bidding_data['optimal_bid_price'] = np.where(
-            bidding_data['generation'] > bidding_data['demand'],
+            bidding_data['total_generation'] > bidding_data['demand'],
             bidding_data['price'] * 0.95,  # Competitive pricing for surplus
             bidding_data['price'] * 1.05   # Premium pricing for deficit
         )
@@ -112,7 +112,7 @@ class AIOptimizationFramework:
         storage_cycles = loss_data.groupby(['region', 'hour']).agg({
             'storage_soc': ['mean', 'std'],
             'price': 'mean',
-            'generation': 'mean',
+            'total_generation': 'mean',
             'demand': 'mean'
         }).reset_index()
         

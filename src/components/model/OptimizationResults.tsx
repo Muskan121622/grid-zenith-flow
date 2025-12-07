@@ -5,8 +5,8 @@ import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar } from 'recharts';
-import { Play, Zap, TrendingUp, Battery, Droplets, Loader2 } from "lucide-react";
-import { useState } from "react";
+import { Play, Zap, TrendingUp, Battery, Droplets, Loader2, RotateCcw } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const OptimizationResults = () => {
   const [isRunning, setIsRunning] = useState(false);
@@ -19,7 +19,9 @@ const OptimizationResults = () => {
     setError(null);
     
     try {
-      const response = await fetch('http://localhost:5001/api/optimize', {
+      const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001';
+      console.log(`Making request to: ${baseUrl}/api/optimize`);
+      const response = await fetch(`${baseUrl}/api/optimize`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -30,20 +32,28 @@ const OptimizationResults = () => {
         })
       });
       
+      console.log(`Response status: ${response.status}`);
+      
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorText = await response.text();
+        console.error(`HTTP error! status: ${response.status}, body: ${errorText}`);
+        throw new Error(`HTTP error! status: ${response.status}, details: ${errorText}`);
       }
       
       const data = await response.json();
+      console.log('Received data:', data);
       
       if (data.success) {
         setResults(data);
       } else {
-        setError(data.error || 'Optimization failed');
+        const errorMessage = data.error || 'Optimization failed';
+        console.error('API error:', errorMessage);
+        setError(errorMessage);
       }
     } catch (err) {
+      console.error('Fetch error:', err);
       if (err instanceof TypeError && err.message.includes('fetch')) {
-        setError('Failed to connect to optimization service. Please ensure the backend server is running on port 5001.');
+        setError('Failed to connect to optimization service. Please ensure the backend server is running.');
       } else {
         setError(`Error: ${err.message}`);
       }
@@ -66,6 +76,9 @@ const OptimizationResults = () => {
       { hour: '23:00', generation: 7.8, demand: 8.9, price: 3800 }
     ];
 
+  // Show a warning when displaying default data
+  const showingDefaultData = !results;
+
   return (
     <div className="space-y-6">
       <Card>
@@ -80,6 +93,13 @@ const OptimizationResults = () => {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
+            {showingDefaultData && (
+              <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                <p className="text-yellow-700">
+                  <strong>Note:</strong> Displaying sample data. Click "Run Optimization" to fetch real data from the backend.
+                </p>
+              </div>
+            )}
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex-1">
                 <label className="text-sm font-medium mb-2 block">Select Scenario</label>
